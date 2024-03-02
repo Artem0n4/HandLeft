@@ -7,7 +7,6 @@ function setButton() {
   ) {
     const players = Network.getConnectedPlayers();
     for(const i in players){
-    Game.message("Player UID: " + players[i])
     const client = Network.getClientForPlayer(players[i]);
     client.send("hl.manipulate", {})
     }
