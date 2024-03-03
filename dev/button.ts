@@ -1,14 +1,7 @@
 function setButton() {
-  const click = function (
-    position: Vector,
-    container:
-      | ItemContainer
-      | com.zhekasmirnov.innercore.api.mod.ui.container.UiAbstractContainer
-  ) {
-    
-      Network.sendToServer("hl.manipulate", {});
-    
-  };
+  
+      
+  
 
   const COORDS_Y = __config__.getFloat("button_y");
   const COORDS_X = __config__.getFloat("button_x");
@@ -39,7 +32,7 @@ function setButton() {
         scale: BUTTON_SIZE,
         clicker: {
           onClick: function (position, container) {
-            return click(position, container);
+            Network.sendToServer("hl.manipulate", {});
           },
         },
       },
