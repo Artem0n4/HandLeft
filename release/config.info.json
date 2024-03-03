@@ -17,7 +17,7 @@
       },
       "type": "SeekBar",
       "min": 0,
-      "max": 600
+      "max": 160
     },
     "button_x": {
         "name": {
@@ -25,8 +25,8 @@
           "ru": "«Координаты кнопки по оси x»"
         },
         "description": {
-          "en": "Just number",
-          "ru": "Просто число"
+          "en": "Number of x coordinate",
+          "ru": "Число x координаты"
         },
         "type": "SeekBar",
         "min": 0,
