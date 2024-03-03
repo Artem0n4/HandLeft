@@ -63,44 +63,34 @@ const Left = {
   },
   itemPlacer(
     block: number,
-    item: { id: number; count: number; data: number } | any,
+    item: number,
     entity,
     coords: Callback.ItemUseCoordinates
   ) {
     const rel = coords.relative;
     const block_ = BlockSource.getDefaultForActor(entity);
-    const item_ = Entity.getCarriedItem(entity);
+    const item_ = Entity.getOffhandItem(entity);
     return (
-      Entity.setCarriedItem(
+      Entity.setOffhandItem(
         entity,
         item,
-        item_.count - 1,
+        item_.count,
         0,
         null
       ),
-      block_.setBlock(rel.x, rel.y, rel.z, block, 0),
-      Game.message("???")
+      block_.setBlock(rel.x, rel.y, rel.z, block, 0)
     );
   },
   itemReplacer(item1, item2, entity, coords, block1, block2?) {
+    if(Entity.getCarriedItem(entity).id !== 0) return;
+    const blockSource = BlockSource.getDefaultForActor(entity);
+    const rel = coords.relative
     if (Left.getItem(entity, item1, 0)) {
-     return ( Left.itemPlacer(block1, item1, entity, coords),
-      Entity.setOffhandItem(
-        entity,
-        item2,
-        1,
-        0,
-        null
-      ) )
-    } else if (Left.getItem(entity, item2, 0)) {
-     return ( Left.itemPlacer(block2 || 0, item2, entity, coords),
-      Entity.setOffhandItem(
-        entity,
-        item1,
-        1,
-        0,
-        null
-      ) )
+     return ( Left.itemPlacer(block1, item2, entity, coords))
+      
+    } else if (Left.getItem(entity, item2, 0) && 
+    blockSource.getBlock(rel.x, rel.y, rel.z).id === block1) {
+     return ( Left.itemPlacer(block2 || 0, item1, entity, coords) )
     }
   },
 };
